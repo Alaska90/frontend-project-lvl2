@@ -1,2 +1,3 @@
 node_modules
-testFiles
+coverage
+.DS_Store

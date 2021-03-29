@@ -18,13 +18,13 @@ const buildDiff = (data1, data2) => {
     const value1 = data1[key];
     const value2 = data2[key];
     if (!has(data1, key)) {
-      return {key, type: 'added', currentValue: value2};
+      return { key, type: 'added', currentValue: value2 };
     }
     if (!has(data2, key)) {
-      return {key, type: 'removed', removedValue: value1};
+      return { key, type: 'removed', removedValue: value1 };
     }
     if (value1 === value2) {
-      return {key, type: 'equal', currentValue: value1}
+      return { key, type: 'equal', currentValue: value1 };
     }
     if (isObject(value1) && isObject(value2)) {
       return { key, type: 'nested', currentValue: buildDiff(value1, value2) };

@@ -2,13 +2,15 @@
 
 plugins:
   - jest
-  - babel
 
 env:
   node: true
   jest: true
+  es2020: true
 
-parser: babel-eslint
+parserOptions:
+  ecmaVersion: 11 # Включает поддержку конструкции import.meta.url
+  sourceType: module
 
 extends:
   - 'airbnb-base'
@@ -16,3 +18,5 @@ extends:
 
 rules:
   no-console: 0
+  import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]

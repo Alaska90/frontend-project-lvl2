@@ -2,17 +2,13 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Alaska90/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Alaska90/frontend-project-lvl2/actions)",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "type": "module",
   "bin": {
-    "gendiff": "dist/bin/gendiff.js"
+    "gendiff": "./bin/gendiff.js"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "test": "npx -n --experimental-vm-modules jest",
-    "build": "NODE_ENV=production babel src --out-dir dist",
+    "test": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js",
     "prepublishOnly": "npm run build",
     "eslint": "eslint ."
   },
@@ -25,21 +21,20 @@
   "bugs": {
     "url": "https://github.com/Alaska90/frontend-project-lvl2/issues"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
   "homepage": "https://github.com/Alaska90/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^7.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.0",
-    "@babel/core": "^7.13.1",
-    "@babel/eslint-parser": "^7.13.4",
-    "@babel/node": "^7.13.0",
-    "@babel/preset-env": "^7.13.8",
-    "babel-eslint": "^10.1.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.1.5"
+    "eslint-plugin-jest": "^24.1.5",
+    "jest": "^26.6.3"
   }
 }

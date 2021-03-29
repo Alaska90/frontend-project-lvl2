@@ -1,7 +1,7 @@
 install: 
 		npm install
 start:
-	    npx babel-node bin/gendiff.js testFiles/file1.json testFiles/file2.json
+	    bin/gendiff.js __fixtures__/file1.json __fixtures__/file2.json
 publish: 
 		npm publish --dry-run
 build:
