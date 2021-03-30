@@ -2,7 +2,9 @@ const stringify = (plainFormat) => plainFormat.join('\n');
 
 const render = (difference) => {
   const plainFormat = difference.map((item) => {
-    const { key, type, removedValue, currentValue } = item;
+    const {
+      key, type, removedValue, currentValue,
+    } = item;
     switch (type) {
       case 'added':
         return `${' '.repeat(2)}+ ${key}: ${currentValue}`;
@@ -12,6 +14,8 @@ const render = (difference) => {
         return `${' '.repeat(2)}  ${key}: ${currentValue}`;
       case 'changed':
         return `${' '.repeat(2)}- ${key}: ${removedValue}\n${' '.repeat(2)}+ ${key}: ${currentValue}`;
+      default:
+        throw new Error('Unknown node type');
     }
   });
   return `{\n${stringify(plainFormat)}\n}`;

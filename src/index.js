@@ -38,8 +38,8 @@ const buildDiff = (data1, data2) => {
   });
   return result;
 };
-
-const genDiff = (path1, path2, format) => {
+// передать 3-им параметром format
+const genDiff = (path1, path2) => {
   const data1 = getData(path1);
   const data2 = getData(path2);
   const difference = buildDiff(data1, data2);
