@@ -4,12 +4,12 @@ import union from 'lodash/union.js';
 import has from 'lodash/has.js';
 import isObject from 'lodash/isObject.js';
 import render from './render.js';
+import parser from './parsers.js';
 
 const getData = (filepath) => {
-  const absolutePathFile = path.resolve(process.cwd(), filepath);
-  const dataFile = fs.readFileSync(absolutePathFile, 'utf-8');
-  const parseFile = JSON.parse(dataFile);
-  return parseFile;
+  const typeFile = path.extname(filepath).slice(1);
+  const dataFile = fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf-8');
+  return parser(typeFile, dataFile);
 };
 
 const buildDiff = (data1, data2) => {
