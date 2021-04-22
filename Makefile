@@ -1,7 +1,7 @@
 install: 
 		npm install
 start:
-	    bin/gendiff.js __fixtures__/file1.json __fixtures__/file2.json
+	    bin/gendiff.js __fixtures__/before.yml __fixtures__/after.yml
 publish: 
 		npm publish --dry-run
 build:

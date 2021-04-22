@@ -6,14 +6,16 @@ import genDiff from '../src/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const filetypes = ['json', 'yml'];
+const fileformats = ['plain'];
 
-const expectedJSON = fs.readFileSync(getFixturePath('json.txt'), 'utf-8');
-
-const jsonFilePath1 = getFixturePath('file1.json');
-const jsonFilePath2 = getFixturePath('file2.json');
-
-test('json', () => {
-  const diff = genDiff(jsonFilePath1, jsonFilePath2);
-  expect(diff).toEqual(expectedJSON);
+const testArguments = fileformats.flatMap((format) => (
+  filetypes.map((filetype) => [filetype, format])
+));
+test.each(testArguments)('genDiff %s', (filetype, format) => {
+  const getFixturePath = (filename) => path.join(__dirname, '..', `__fixtures__/${filename}`);
+  const before = getFixturePath(`before.${filetype}`);
+  const after = getFixturePath(`after.${filetype}`);
+  const expectedResult = fs.readFileSync(getFixturePath(format), 'utf-8');
+  expect(genDiff(before, after, format)).toEqual(expectedResult);
 });
